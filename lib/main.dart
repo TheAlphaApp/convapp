@@ -1,12 +1,12 @@
 import 'package:camera/camera.dart';
 import 'package:convapp/features/img_to_txt/presentation/img_to_txt_result_page.dart';
-import 'package:convapp/painters/camera_view.dart';
-import 'package:convapp/painters/text_detector_view.dart';
+import 'package:convapp/temp_files/labeling/label_detector.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'features/img_to_txt/presentation/img_to_txt_page.dart';
 import 'home.dart';
+import 'temp_files/object detector/object_detector.dart';
 
 List<CameraDescription> cameras = [];
 
@@ -31,6 +31,8 @@ class MyApp extends StatelessWidget {
         HomePage.routeName: (context) => const HomePage(),
         ImgToTxtPage.routeName: (context) => const ImgToTxtPage(),
         ImgToTxtResultPage.routeName: (context) => const ImgToTxtResultPage(),
+        ImageLabelView.routeName: (context) => const ImageLabelView(),
+        ObjectDetectorView.routeName: (context) => const ObjectDetectorView(),
       },
     );
   }

@@ -16,12 +16,6 @@ class ImgToTxtPage extends StatelessWidget {
     return Consumer(
       builder: (context, ref, _) {
         final model = ref.watch(imgToTxtModelProvider);
-        ref.listen(
-          imgToTxtModelProvider, (old,neya) {
-            print('OLD: ${old}\n NEW: ${neya}');
-          
-          },
-        );
         return Scaffold(
           appBar: AppBar(
             title: const Text('ConvApp'),
