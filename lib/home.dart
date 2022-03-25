@@ -1,5 +1,3 @@
-import 'package:convapp/temp_files/labeling/label_detector.dart';
-import 'package:convapp/temp_files/object%20detector/object_detector.dart';
 import 'package:flutter/material.dart';
 
 import 'features/img_to_txt/presentation/img_to_txt_page.dart';
@@ -23,19 +21,10 @@ class HomePage extends StatelessWidget {
             },
           ),
           ListTile(
-            title: const Text('Image Labelling'),
+            title: const Text('Speech Sample App'),
             trailing: const Icon(Icons.arrow_forward),
-            onTap: () {
-              Navigator.pushNamed(context, ImageLabelView.routeName);
-            },
+            onTap: () {},
           ),
-          ListTile(
-            title: const Text('Object Detector View'),
-            trailing: const Icon(Icons.arrow_forward),
-            onTap: () {
-              Navigator.pushNamed(context, ObjectDetectorView.routeName);
-            },
-          )
         ],
       ),
     );

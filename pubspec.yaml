@@ -19,7 +19,8 @@ dependencies:
   image_picker: ^0.7.2
   camera: ^0.9.4+16
   permission_handler: ^9.2.0
-
+  speech_to_text: ^5.4.3
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter
