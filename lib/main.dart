@@ -1,5 +1,6 @@
 import 'package:camera/camera.dart';
 import 'package:convapp/features/img_to_txt/presentation/img_to_txt_result_page.dart';
+import 'package:convapp/features/temp_converter/presentation/temp_conv_page.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -27,7 +28,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.teal,
       ),
       routes: {
-        HomePage.routeName: (context) => const HomePage(),
+        HomePage.routeName: (context) => const TempConvPage(),
         ImgToTxtPage.routeName: (context) => const ImgToTxtPage(),
         ImgToTxtResultPage.routeName: (context) => const ImgToTxtResultPage(),
       },
