@@ -28,9 +28,10 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.teal,
       ),
       routes: {
-        HomePage.routeName: (context) => const TempConvPage(),
+        HomePage.routeName: (context) => const HomePage(),
         ImgToTxtPage.routeName: (context) => const ImgToTxtPage(),
         ImgToTxtResultPage.routeName: (context) => const ImgToTxtResultPage(),
+        TempConvPage.routeName:(context) => const TempConvPage(),
       },
     );
   }

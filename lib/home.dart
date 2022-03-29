@@ -1,3 +1,4 @@
+import 'package:convapp/features/temp_converter/presentation/temp_conv_page.dart';
 import 'package:flutter/material.dart';
 
 import 'features/img_to_txt/presentation/img_to_txt_page.dart';
@@ -21,9 +22,11 @@ class HomePage extends StatelessWidget {
             },
           ),
           ListTile(
-            title: const Text('Speech Sample App'),
+            title: const Text('Temp Converter'),
             trailing: const Icon(Icons.arrow_forward),
-            onTap: () {},
+            onTap: () {
+              Navigator.pushNamed(context, TempConvPage.routeName);
+            },
           ),
         ],
       ),
