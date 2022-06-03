@@ -44,7 +44,7 @@ class ImgToTxtPage extends StatelessWidget {
                   child: model.isProcessing
                       ? null
                       : Center(
-                          child: DropdownButton<TextRecognitionOptions>(
+                          child: DropdownButton<TextRecognitionScript>(
                             // When the sort type changes, this will rebuild the dropdown
                             // to update the icon shown.
                             value: ref.watch(languageProvider),
@@ -54,23 +54,23 @@ class ImgToTxtPage extends StatelessWidget {
                                 .state = value!,
                             items: const [
                               DropdownMenuItem(
-                                value: TextRecognitionOptions.DEFAULT,
+                                value: TextRecognitionScript.latin,
                                 child: Text('English'),
                               ),
                               DropdownMenuItem(
-                                value: TextRecognitionOptions.DEVANAGIRI,
+                                value: TextRecognitionScript.devanagiri,
                                 child: Text('Hindi'),
                               ),
                               DropdownMenuItem(
-                                value: TextRecognitionOptions.CHINESE,
+                                value: TextRecognitionScript.chinese,
                                 child: Text('Chinese'),
                               ),
                               DropdownMenuItem(
-                                value: TextRecognitionOptions.JAPANESE,
+                                value: TextRecognitionScript.japanese,
                                 child: Text('Japanese'),
                               ),
                               DropdownMenuItem(
-                                value: TextRecognitionOptions.KOREAN,
+                                value: TextRecognitionScript.korean,
                                 child: Text('Korean'),
                               ),
                             ],

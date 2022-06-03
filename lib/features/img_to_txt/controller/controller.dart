@@ -5,25 +5,30 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_ml_kit/google_ml_kit.dart';
 import 'package:image_picker/image_picker.dart';
 
-final languageProvider = StateProvider<TextRecognitionOptions>((ref) {
-  return TextRecognitionOptions.DEFAULT;
+final languageProvider = StateProvider<TextRecognitionScript>((ref) {
+  return TextRecognitionScript.latin;
 });
 final imgToTxtModelProvider =
     StateNotifierProvider.autoDispose<ImgToTxtNotifier, ImgToTxtModel>(
   (ref) {
-    return ImgToTxtNotifier(ref.read, imagePicker: ImagePicker());
+    final TextRecognizer _textRecognizer = GoogleMlKit.vision.textRecognizer(
+      script: ref.read(languageProvider),
+    );
+    return ImgToTxtNotifier(
+      _textRecognizer,
+      imagePicker: ImagePicker(),
+    );
   },
 );
 
 class ImgToTxtNotifier extends StateNotifier<ImgToTxtModel> {
-  ImgToTxtNotifier(this.reader, {required this.imagePicker})
+  ImgToTxtNotifier(this.textRecognizer, {required this.imagePicker})
       : super(const ImgToTxtModel());
   final ImagePicker? imagePicker;
+  final TextRecognizer textRecognizer;
 
-  final TextDetectorV2 _textDetector = GoogleMlKit.vision.textDetectorV2();
-  final Reader reader;
   Future<void> getImage(ImageSource source) async {
-    final pickedFile = await imagePicker?.getImage(source: source);
+    final pickedFile = await imagePicker?.pickImage(source: source);
     if (pickedFile != null) {
       state = state.copyWith(
         image: File(pickedFile.path),
@@ -48,9 +53,9 @@ class ImgToTxtNotifier extends StateNotifier<ImgToTxtModel> {
     try {
       state = state.copyWith(isProcessing: true);
       if (state.inputImage != null) {
-        final recognisedText = await _textDetector.processImage(
+        final recognisedText = await textRecognizer.processImage(
           state.inputImage!,
-          script: reader(languageProvider),
+          //
         );
         state = state.copyWith(text: recognisedText.text);
       }
@@ -64,6 +69,6 @@ class ImgToTxtNotifier extends StateNotifier<ImgToTxtModel> {
   @override
   void dispose() async {
     super.dispose();
-    await _textDetector.close();
+    await textRecognizer.close();
   }
 }
